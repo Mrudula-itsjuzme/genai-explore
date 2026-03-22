@@ -1,80 +1,43 @@
 # Mudi - AI-Powered Mental Health Companion
 
-Mudi is a comprehensive mental health companion application that combines journaling, AI-powered chat support, mood tracking, playlist generation, and generative art creation to support users' emotional well-being.
+Mudi is a comprehensive mental health companion application that combines journaling, AI-powered chat support, mood tracking, playlist generation, and generative art creation to support emotional well-being.
 
-## Features (MVP)
+## Core Features
 
-1. **Journal (CRUD + mood tag)** — Write, edit, delete entries with optional mood tagging
-2. **Chatbot companion (RAG-grounded)** — LLM answers grounded by your recent journal entries
-3. **Mood Calendar + Insights** — Daily mood visualization with analytics
-4. **Playlist generator** — Mood-based playlist recommendations
-5. **Generative Art Wall** — Create and share anonymous art from journal entries
-
-## Architecture
-
-```
-User (browser) ⇄ React UI ⇄ FastAPI ⇄ {SQLite DB, Chroma Vector DB, Object Storage, LLM/Embedding Service, Spotify API}
-```
+1. **Journaling**: Securely write and manage entries with associated mood tags.
+2. **AI Chatbot**: A RAG-grounded companion that provides support based on recent journal entries.
+3. **Mood Calendar**: Visual analytics for daily mood tracking over time.
+4. **Playlist Generation**: Personalized music recommendations based on the user's current mood.
+5. **Generative Art**: Creation of anonymous art pieces derived from journal content.
 
 ## Tech Stack
 
-- **Frontend**: React (Vite) + Tailwind CSS + Recharts
-- **Backend**: FastAPI (Python)
-- **Database**: SQLite (journal entries) + Chroma (vector embeddings)
-- **AI/ML**: Sentence Transformers (embeddings) + OpenAI/Gemini (LLM)
-- **Art Generation**: Stable Diffusion (Diffusers)
-- **Development**: Docker + docker-compose
+- **Frontend**: React (Vite) with Tailwind CSS and Recharts for data visualization.
+- **Backend**: FastAPI for a robust Python-based API.
+- **Storage**: SQLite for relational data and Chroma for vector embeddings.
+- **AI/ML**: Sentence Transformers for embeddings, with LLM support from OpenAI or Gemini.
+- **Art Generation**: Stable Diffusion (Diffusers) for unique visual creations.
+- **Infrastructure**: Containerized using Docker and Docker Compose.
 
-## Quick Start
+## Installation and Setup
 
-1. **Clone and setup**:
+1. **Clone the repository**:
+   Navigate to your local project directory.
+2. **Build and Run**:
    ```bash
-   cd E:\mudi-mental-health-companion
    docker-compose up --build
    ```
+3. **Access the Application**:
+   - Web Interface: [http://localhost:3000](http://localhost:3000)
+   - API Documentation: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-2. **Access the application**:
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8000
-   - API Docs: http://localhost:8000/docs
+## Privacy and Data Security
 
-## Data Model
+- Entries remain private unless explicitly shared.
+- Sharing of generative art is anonymized by default.
+- Mood inference is based solely on text input.
+- Designed with content moderation and data export options.
 
-### User
-- `id`, `display_name`, `email`, `settings` (honesty_mode: bool)
+## Disclaimer
 
-### JournalEntry
-- `id`, `user_id`, `text`, `mood_tag`, `created_at`, `shared_anonymized`
-
-### Art
-- `id`, `owner_user_id`, `source_entry_id`, `art_url`, `style`, `shared_anonymized`
-
-## API Endpoints
-
-- `POST /auth/login` - Authentication
-- `GET/POST /journal` - Journal CRUD operations
-- `GET /calendar` - Mood calendar data
-- `POST /chat` - AI companion chat
-- `POST /playlist` - Generate mood-based playlists
-- `POST /art` - Generate art from entries
-- `GET /art/wall` - Anonymous art sharing
-
-## Privacy & Safety
-
-- Entries are private by default
-- Sharing is explicit and anonymized
-- Text-only mood inference (no camera/biometric data)
-- Built-in content moderation and safety filters
-- GDPR-compliant data export and deletion
-
-## Development
-
-See `docs/DEVELOPMENT.md` for detailed setup instructions and development workflow.
-
-## Demo
-
-See `docs/DEMO.md` for demo script and usage examples.
-
----
-
-*Built for mental health awareness and support. Not a replacement for professional medical advice.*
+Mudi is built for mental health awareness and support. It is not a substitute for professional medical advice, diagnosis, or treatment.
